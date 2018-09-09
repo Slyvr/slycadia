@@ -21,6 +21,15 @@ public class SplashMenu extends Menu{
 		
 		ArrayList<Ent> ents = new ArrayList<Ent>();
 
+		Ent bg07_1 = new Ent();
+		bg07_1.setName("bg07_1");
+		bg07_1.setImg(Game.getGlobal().getImgByName("bg07"));
+		bg07_1.setPosBox(new Rectangle(0,
+				-100,
+				bg07_1.getImg().getTex().getWidth(),
+				bg07_1.getImg().getTex().getHeight()));
+		ents.add(bg07_1);
+		
 		Ent logo = new Ent();
 		logo.setName("logo");
 		logo.setImg(Game.getGlobal().getImgByName("logoSplash"));

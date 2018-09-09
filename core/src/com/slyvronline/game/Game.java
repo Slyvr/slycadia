@@ -7,6 +7,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Graphics.DisplayMode;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.slyvronline.game.controllers.GameController;
 import com.slyvronline.game.load.LoadFonts;
 import com.slyvronline.game.load.LoadImgs;
 import com.slyvronline.game.load.LoadMenus;
@@ -45,6 +48,8 @@ public class Game extends ApplicationAdapter {
 		LoadImgs.load();
 		LoadFonts.load();
 		LoadMenus.load();
+		
+		loadControllers();
 	}
 
 	@Override
@@ -61,7 +66,7 @@ public class Game extends ApplicationAdapter {
 		SpriteBatch menuBatch = global.getMenuBatch();
 		
 		//UPDATES
-		handleCameraInput();
+		//handleCameraInput();
 		global.getCamera().update();
 		global.getCurrentMenu().update(global.getStateTime());
 		if (global.getCurrentMenu().getName().equals("game") && global.getGame() != null){
@@ -183,5 +188,11 @@ public class Game extends ApplicationAdapter {
 	}
 	public static void writeLog(String text){
 		writeLog("Unknown",text);
+	}
+	
+	public static void loadControllers(){
+		for(Controller controller : Controllers.getControllers()){
+			controller.addListener(new GameController());
+		}
 	}
 }

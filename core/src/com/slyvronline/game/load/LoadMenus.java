@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.slyvronline.game.Game;
 import com.slyvronline.game.objects.Menu;
-import com.slyvronline.game.objects.menus.ControlsMenu;
 import com.slyvronline.game.objects.menus.CreditsMenu;
 import com.slyvronline.game.objects.menus.GameMenu;
 import com.slyvronline.game.objects.menus.MainMenu;
@@ -24,7 +23,6 @@ public class LoadMenus {
 		menus.add(new SplashMenu());
 		menus.add(new MainMenu());
 		menus.add(new CreditsMenu());
-		menus.add(new ControlsMenu());
 		menus.add(new GameMenu());
 		
 		Game.getGlobal().setMenus(menus);

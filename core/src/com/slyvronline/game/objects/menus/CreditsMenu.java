@@ -3,9 +3,11 @@ package com.slyvronline.game.objects.menus;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.slyvronline.game.Game;
+import com.slyvronline.game.controllers.Xbox360Controller;
 import com.slyvronline.game.objects.Ent;
 import com.slyvronline.game.objects.Menu;
 
@@ -33,32 +35,34 @@ public class CreditsMenu extends Menu{
 		fntCredits.setName("fntCredits");
 		fntCredits.setFont(Game.getGlobal().getFontByName("AgencyFbGlow32"));
 		fntCredits.setPosBox(new Rectangle(logoCredits.getX(),
-				logoCredits.getY()-32,
+				logoCredits.getY(),
 				0,
 				0));
-		fntCredits.setText("Game by Matthew Schrum aka Slyvr89\n\n"+
-				"Created for 2018 STL Arcade Jam\n\n"+
-				"Thanks for playing my game!\n\n" +
+		fntCredits.setText("Created by Matthew Schrum aka Slyvr89\n\n"+
+				"Created for STL Arcade Jam 2018\n\n"+
 				"\n\n" +
-				"");
+				"You can find the code on github here:\n\n" +
+				"https://github.com/Slyvr/slycadia");
 		fntCredits.setColor(Color.WHITE);
 		ents.add(fntCredits);
 		
 		Ent btnBack = new Ent();
 		btnBack.setName("btnBack");
+		btnBack.setId(1);
 		btnBack.setImg(Game.getGlobal().getImgByName("btnBack"));
 		btnBack.setPosBox(new Rectangle((Gdx.graphics.getWidth()/2)-(btnBack.getImg().getTex().getWidth()/2),
 				0+15,
 				btnBack.getImg().getTex().getWidth(),
 				btnBack.getImg().getTex().getHeight()));
+		btnBack.setSelected(true);
 		ents.add(btnBack);
 		
 		this.setEnts(ents);
 	}
 	
 	public void update (float stateTime){
-		updateButtons();
-		updateButtonHover();
+		//updateButtons();
+		//updateButtonHover();
 	}
 	
 	public void updateButtons(){
@@ -76,6 +80,18 @@ public class CreditsMenu extends Menu{
 					}
 				}
 			}
+		}
+	}
+	
+	public void updateControllerButtonDown(Controller controller, int buttonCode){
+		if (buttonCode == Xbox360Controller.BUTTON_A){
+			Ent selected = this.getSelectedEnt();
+			if (selected.getName().equals("btnBack")){
+				Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
+			}
+		}
+		if (buttonCode == Xbox360Controller.BUTTON_B){
+			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
 		}
 	}
 }

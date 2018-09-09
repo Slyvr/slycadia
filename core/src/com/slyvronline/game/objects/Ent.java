@@ -53,6 +53,7 @@ public class Ent {
 	private enum State {
 		HOVER, CLICKED, JUMP, STAND, INJURED, DEAD
 	}
+	private boolean selected;
 	
 	public Ent(){
 		color = Color.WHITE;
@@ -86,6 +87,7 @@ public class Ent {
 		this.state = ent.getState();
 		this.flipX = ent.isFlipX();
 		this.flipY = ent.isFlipY();
+		this.selected = ent.isSelected();
 	}
 	
 	public void render(SpriteBatch batch){
@@ -103,14 +105,20 @@ public class Ent {
 				}
 				else{
 				
-					/*batch.draw(this.getImg().getTex(),
-						this.getX(),
-						this.getY(),
-						this.getWidth(),
-						this.getHeight());*/
-					
-					//batch.draw(texture, x, y, originX, originY, width, height, scaleX, scaleY, rotation, srcX, srcY, srcWidth, srcHeight, flipX, flipY);
-					
+					if (this.isSelected()){
+						Img hoverImg = Game.getGlobal().getImgByName(this.getImg().getName()+"_hover");
+						if (hoverImg != null){
+							this.setImg(hoverImg);
+						}
+					}
+					else{
+						if (this.getImg().getName().contains("_hover")){
+							Img oldImg = Game.getGlobal().getImgByName(this.getImg().getName().replace("_hover", ""));
+							if (oldImg != null){
+								this.setImg(oldImg);
+							}
+						}
+					}
 					int srcX=0;
 					int srcY=0;
 					int srcWidth=this.getImg().getTex().getWidth();
@@ -307,5 +315,11 @@ public class Ent {
 	}
 	public void setSleepTimer(int sleepTimer) {
 		this.sleepTimer = sleepTimer;
+	}
+	public boolean isSelected() {
+		return selected;
+	}
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

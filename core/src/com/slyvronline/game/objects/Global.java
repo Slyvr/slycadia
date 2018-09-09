@@ -24,8 +24,6 @@ public class Global {
 	private ArrayList<Font> fonts;
 	private ArrayList<Menu> menus;
 	
-	private ArrayList<GameController> controllers;
-	
 	private Menu currentMenu;
 	private AudioTrack currentTrack;
 	private GameInstance game;
@@ -89,17 +87,6 @@ public class Global {
 	}
 	public void setMenus(ArrayList<Menu> menus) {
 		this.menus = menus;
-	}
-	public ArrayList<GameController> getControllers() {
-		return controllers;
-	}
-	public void setControllers(ArrayList<GameController> controllers) {
-		this.controllers = controllers;
-	}
-	public GameController getControllerByName(String name){
-		for(GameController controller : controllers)
-			if (controller.getName().equals(name))	return controller;
-		return null;
 	}
 	public int getDefaultScreenWidth() {
 		return defaultScreenWidth;

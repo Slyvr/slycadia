@@ -22,16 +22,20 @@ public class LoadImgs {
 		//LOGOS - Titles
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/logos/logoSplash.png")),"logoSplash"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/logos/logoCredits.png")),"logoCredits"));
+		imgs.add(new Img(new Texture(Gdx.files.internal("data/logos/logoTitle.png")),"logoTitle"));
 		
 		//BUTTONS
-		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnNewGame.png")),"btnNewGame"));
-		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnNewGame_hover.png")),"btnNewGame_hover"));
+		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnStart.png")),"btnStart"));
+		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnStart_hover.png")),"btnStart_hover"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnExit.png")),"btnExit"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnExit_hover.png")),"btnExit_hover"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnBack.png")),"btnBack"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnBack_hover.png")),"btnBack_hover"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnCredits.png")),"btnCredits"));
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/btns/btnCredits_hover.png")),"btnCredits_hover"));
+		
+		//Backgrounds
+		imgs.add(new Img(new Texture(Gdx.files.internal("data/bg/BackgroundsFree/07/PNG/1920x1080.png")),"bg07"));
 		
 		Game.getGlobal().setImgs(imgs);
 	}
