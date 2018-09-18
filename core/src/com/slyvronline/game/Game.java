@@ -20,6 +20,8 @@ import com.slyvronline.game.controllers.GameController;
 import com.slyvronline.game.load.LoadFonts;
 import com.slyvronline.game.load.LoadImgs;
 import com.slyvronline.game.load.LoadMenus;
+import com.slyvronline.game.load.LoadMusic;
+import com.slyvronline.game.load.LoadSfx;
 import com.slyvronline.game.objects.Global;
 import com.slyvronline.game.utils.GameConstants;
 
@@ -48,8 +50,13 @@ public class Game extends ApplicationAdapter {
 		LoadImgs.load();
 		LoadFonts.load();
 		LoadMenus.load();
+		LoadSfx.load();
+		LoadMusic.load();
 		
 		loadControllers();
+		
+		global.setCurrentTrack(global.getTrackByName("shopping"));
+		global.getCurrentTrack().play();
 	}
 
 	@Override

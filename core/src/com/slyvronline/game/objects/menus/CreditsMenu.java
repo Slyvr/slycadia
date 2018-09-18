@@ -10,6 +10,7 @@ import com.slyvronline.game.Game;
 import com.slyvronline.game.controllers.Xbox360Controller;
 import com.slyvronline.game.objects.Ent;
 import com.slyvronline.game.objects.Menu;
+import com.slyvronline.game.utils.GameConstants;
 
 public class CreditsMenu extends Menu{
 
@@ -21,6 +22,15 @@ public class CreditsMenu extends Menu{
 		this.setName("credits");
 		
 		ArrayList<Ent> ents = new ArrayList<Ent>();
+		
+		Ent bg07_1 = new Ent();
+		bg07_1.setName("bg07_1");
+		bg07_1.setImg(Game.getGlobal().getImgByName("bg07"));
+		bg07_1.setPosBox(new Rectangle(0,
+				-100,
+				bg07_1.getImg().getTex().getWidth(),
+				bg07_1.getImg().getTex().getHeight()));
+		ents.add(bg07_1);
 		
 		Ent logoCredits = new Ent();
 		logoCredits.setName("logoCredits");
@@ -39,10 +49,10 @@ public class CreditsMenu extends Menu{
 				0,
 				0));
 		fntCredits.setText("Created by Matthew Schrum aka Slyvr89\n\n"+
-				"Created for STL Arcade Jam 2018\n\n"+
-				"\n\n" +
-				"You can find the code on github here:\n\n" +
-				"https://github.com/Slyvr/slycadia");
+				"https://github.com/Slyvr/slycadia\n\n"+
+				"Music by TeknoAxe.com and Purple-Planet.com\n\n" +
+				"SFX by freesound.org\n\n" +
+				"");
 		fntCredits.setColor(Color.WHITE);
 		ents.add(fntCredits);
 		
@@ -61,37 +71,20 @@ public class CreditsMenu extends Menu{
 	}
 	
 	public void update (float stateTime){
-		//updateButtons();
-		//updateButtonHover();
+		updateKeyboardNavigation();
+		updateKeyboardSelect();
 	}
 	
-	public void updateButtons(){
-		if (Gdx.input.justTouched()){
-			Rectangle mousePos = new Rectangle(Gdx.input.getX(),Gdx.graphics.getHeight()-Gdx.input.getY(),1,1);
-			for(Ent e : this.getEnts()){
-				Rectangle ePos = new Rectangle(e.getPosBox());
-				ePos.setX(ePos.getX()+Game.getGlobal().getViewport().x);
-				ePos.setY(ePos.getY()+Game.getGlobal().getViewport().y);
-				if (e.getName().contains("btn")){
-					if (mousePos.overlaps(ePos)){
-						if (e.getName().equals("btnBack")){
-							Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	public void updateControllerButtonDown(Controller controller, int buttonCode){
-		if (buttonCode == Xbox360Controller.BUTTON_A){
-			Ent selected = this.getSelectedEnt();
-			if (selected.getName().equals("btnBack")){
-				Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
-			}
-		}
-		if (buttonCode == Xbox360Controller.BUTTON_B){
+	public void buttonSelect(){
+		Ent selected = this.getSelectedEnt();
+		if (selected.getName().equals("btnBack")){
+			Game.getGlobal().getSfxByName("papery").play();
 			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
 		}
+	}
+	
+	public void buttonDeselect(){
+		Game.getGlobal().getSfxByName("papery").play();
+		Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
 	}
 }

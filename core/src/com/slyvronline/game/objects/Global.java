@@ -23,6 +23,7 @@ public class Global {
 	private ArrayList<AudioTrack> tracks;
 	private ArrayList<Font> fonts;
 	private ArrayList<Menu> menus;
+	private ArrayList<Sfx> sfx;
 	
 	private Menu currentMenu;
 	private AudioTrack currentTrack;
@@ -63,7 +64,16 @@ public class Global {
 			if (name.equals(menu.getName())) return menu;
 		return null;
 	}
-	
+	public Sfx getSfxByName(String name){
+		for(Sfx s : sfx)
+			if (name.equals(s.getName())) return s;
+		return null;
+	}
+	public Sfx getSfxById(long id){
+		for(Sfx s : sfx)
+			if (s.getId()==id) return s;
+		return null;
+	}
 	public ArrayList<Img> getImgs() {
 		return imgs;
 	}
@@ -87,6 +97,12 @@ public class Global {
 	}
 	public void setMenus(ArrayList<Menu> menus) {
 		this.menus = menus;
+	}
+	public ArrayList<Sfx> getSfx() {
+		return sfx;
+	}
+	public void setSfx(ArrayList<Sfx> sfx) {
+		this.sfx = sfx;
 	}
 	public int getDefaultScreenWidth() {
 		return defaultScreenWidth;

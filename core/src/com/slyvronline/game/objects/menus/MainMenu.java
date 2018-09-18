@@ -10,6 +10,7 @@ import com.slyvronline.game.controllers.Xbox360Controller;
 import com.slyvronline.game.objects.Ent;
 import com.slyvronline.game.objects.Img;
 import com.slyvronline.game.objects.Menu;
+import com.slyvronline.game.utils.GameConstants;
 
 public class MainMenu extends Menu{
 	
@@ -75,49 +76,28 @@ public class MainMenu extends Menu{
 	}
 	
 	public void update(float stateTime){
-		//updateButtons();
-		//updateButtonHover();
+		updateKeyboardNavigation();
+		updateKeyboardSelect();
 	}
 	
-	public void updateButtons(){
-		if (Gdx.input.justTouched()){
-			Rectangle mousePos = new Rectangle(Gdx.input.getX(),Gdx.graphics.getHeight()-Gdx.input.getY(),1,1);
-			for(Ent e : this.getEnts()){
-				Rectangle ePos = new Rectangle(e.getPosBox());
-				ePos.setX(ePos.getX()+Game.getGlobal().getViewport().x);
-				ePos.setY(ePos.getY()+Game.getGlobal().getViewport().y);
-				if (e.getName().contains("btn")){
-					if (mousePos.overlaps(ePos)){
-						if (e.getName().equals("btnNewGame")){
-							Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("game"));
-						}
-						if (e.getName().equals("btnCredits")){
-							Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("credits"));
-						}
-						if (e.getName().equals("btnControls")){
-							Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("controls"));
-						}
-						if (e.getName().equals("btnExit")){
-							Gdx.app.exit();
-						}
-					}
-				}
-			}
+	public void buttonSelect(){
+		Ent selected = this.getSelectedEnt();
+		if (selected.getName().equals("btnStart")){
+			Game.getGlobal().getSfxByName("papery").play();
+			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("gameselect"));
+		}
+		if (selected.getName().equals("btnCredits")){
+			Game.getGlobal().getSfxByName("papery").play();
+			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("credits"));
+		}
+		if (selected.getName().equals("btnExit")){
+			Gdx.app.exit();
 		}
 	}
 	
-	public void updateControllerButtonDown(Controller controller, int buttonCode){
-		if (buttonCode == Xbox360Controller.BUTTON_A){
-			Ent selected = this.getSelectedEnt();
-			if (selected.getName().equals("btnNewGame")){
-				Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("game"));
-			}
-			if (selected.getName().equals("btnCredits")){
-				Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("credits"));
-			}
-			if (selected.getName().equals("btnExit")){
-				Gdx.app.exit();
-			}
+	public void buttonDeselect(){
+		if (Gdx.input.isKeyJustPressed(GameConstants.KEY_QUIT)){
+			Gdx.app.exit();
 		}
 	}
 	
