@@ -33,6 +33,8 @@ public class Ent {
 	private int id;
 	private String type;
 	private String desc;
+	private int hp;
+	private int mp;
 	private Rectangle collisionBox;
 	private Rectangle posBox;
 	private int centerX;
@@ -211,6 +213,18 @@ public class Ent {
 	}
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+	public int getHp() {
+		return hp;
+	}
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+	public int getMp() {
+		return mp;
+	}
+	public void setMp(int mp) {
+		this.mp = mp;
 	}
 	public Rectangle getCollisionBox() {
 		return collisionBox;

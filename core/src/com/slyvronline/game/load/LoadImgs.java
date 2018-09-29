@@ -36,6 +36,21 @@ public class LoadImgs {
 		
 		//Backgrounds
 		imgs.add(new Img(new Texture(Gdx.files.internal("data/bg/BackgroundsFree/07/PNG/1920x1080.png")),"bg07"));
+		imgs.add(new Img(new Texture(Gdx.files.internal("data/icons/chevron-color.png")),"chevron-othercolor"));
+		imgs.add(new Img(new Texture(Gdx.files.internal("data/icons/chevron-blue.png")),"chevron-color"));
+		
+		//Tiles
+		Img basictiles = new Img(new Texture(Gdx.files.internal("data/tiles/basictiles.png")),"basictiles");
+		TextureRegion[] texRegs = new TextureRegion[128/16*256/16];
+		int counter = 0;
+		for(int y=0; y<basictiles.getTex().getHeight()/16; y++){
+			for(int x=0; x<basictiles.getTex().getWidth()/16; x++){
+				texRegs[counter] = new TextureRegion(basictiles.getTex(), x, y, 16, 16);
+				counter++;
+			}
+		}
+		basictiles.setTexRegs(texRegs);
+		imgs.add(basictiles);
 		
 		Game.getGlobal().setImgs(imgs);
 	}

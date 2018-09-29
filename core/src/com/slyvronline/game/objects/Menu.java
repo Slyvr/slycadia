@@ -157,6 +157,162 @@ public class Menu {
 		//System.out.println(controller.getName()+" - "+buttonCode+" UP");
 	}
 	
+	public void cycleChevronBg(){
+		for(Ent e : ents){
+			if (e.getName().contains("chevron")){
+				e.setX(e.getX() + 1);
+				e.setY(e.getY() + 1);
+				if (e.getX() >= 2048){
+					e.setX(-e.getPosBox().getWidth());
+				}
+				if (e.getY() >= 1024){
+					e.setY(-e.getPosBox().getHeight());
+				}
+			}
+		}
+	}
+	
+	public ArrayList<Ent> buildChevronBG(){
+		ArrayList<Ent> ents = new ArrayList<Ent>();
+		
+		Ent chevron1 = new Ent();
+		chevron1.setName("chevron1");
+		chevron1.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron1.setPosBox(new Rectangle(-1,
+				-1,
+				chevron1.getImg().getTex().getWidth(),
+				chevron1.getImg().getTex().getHeight()));
+		ents.add(chevron1);
+		
+		Ent chevron12 = new Ent();
+		chevron12.setName("chevron12");
+		chevron12.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron12.setPosBox(new Rectangle(chevron1.getPosBox().getX()+chevron1.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY(),
+				chevron12.getImg().getTex().getWidth(),
+				chevron12.getImg().getTex().getHeight()));
+		ents.add(chevron12);
+		
+		Ent chevron13 = new Ent();
+		chevron13.setName("chevron13");
+		chevron13.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron13.setPosBox(new Rectangle(chevron12.getPosBox().getX()+chevron12.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY(),
+				chevron13.getImg().getTex().getWidth(),
+				chevron13.getImg().getTex().getHeight()));
+		ents.add(chevron13);
+		
+		Ent chevron14 = new Ent();
+		chevron14.setName("chevron14");
+		chevron14.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron14.setPosBox(new Rectangle(chevron13.getPosBox().getX()+chevron13.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY(),
+				chevron14.getImg().getTex().getWidth(),
+				chevron14.getImg().getTex().getHeight()));
+		ents.add(chevron14);
+		
+		Ent chevron15 = new Ent();
+		chevron15.setName("chevron15");
+		chevron15.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron15.setPosBox(new Rectangle(chevron14.getPosBox().getX()+chevron14.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY(),
+				chevron15.getImg().getTex().getWidth(),
+				chevron15.getImg().getTex().getHeight()));
+		ents.add(chevron15);
+		
+		Ent chevron2 = new Ent();
+		chevron2.setName("chevron2");
+		chevron2.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron2.setPosBox(new Rectangle(chevron1.getPosBox().getX(),
+				chevron1.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron2.getImg().getTex().getWidth(),
+				chevron2.getImg().getTex().getHeight()));
+		ents.add(chevron2);
+		
+		Ent chevron22 = new Ent();
+		chevron22.setName("chevron22");
+		chevron22.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron22.setPosBox(new Rectangle(chevron1.getPosBox().getX()+chevron1.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron22.getImg().getTex().getWidth(),
+				chevron22.getImg().getTex().getHeight()));
+		ents.add(chevron22);
+		
+		Ent chevron23 = new Ent();
+		chevron23.setName("chevron23");
+		chevron23.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron23.setPosBox(new Rectangle(chevron12.getPosBox().getX()+chevron12.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron23.getImg().getTex().getWidth(),
+				chevron23.getImg().getTex().getHeight()));
+		ents.add(chevron23);
+		
+		Ent chevron24 = new Ent();
+		chevron24.setName("chevron24");
+		chevron24.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron24.setPosBox(new Rectangle(chevron13.getPosBox().getX()+chevron13.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron24.getImg().getTex().getWidth(),
+				chevron24.getImg().getTex().getHeight()));
+		ents.add(chevron24);
+		
+		Ent chevron25 = new Ent();
+		chevron25.setName("chevron25");
+		chevron25.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron25.setPosBox(new Rectangle(chevron14.getPosBox().getX()+chevron14.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron25.getImg().getTex().getWidth(),
+				chevron25.getImg().getTex().getHeight()));
+		ents.add(chevron25);
+		
+		Ent chevron3 = new Ent();
+		chevron3.setName("chevron3");
+		chevron3.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron3.setPosBox(new Rectangle(chevron1.getPosBox().getX(),
+				chevron2.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron3.getImg().getTex().getWidth(),
+				chevron3.getImg().getTex().getHeight()));
+		ents.add(chevron3);
+		
+		Ent chevron32 = new Ent();
+		chevron32.setName("chevron32");
+		chevron32.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron32.setPosBox(new Rectangle(chevron1.getPosBox().getX()+chevron1.getImg().getTex().getWidth(),
+				chevron2.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron32.getImg().getTex().getWidth(),
+				chevron32.getImg().getTex().getHeight()));
+		ents.add(chevron32);
+		
+		Ent chevron33 = new Ent();
+		chevron33.setName("chevron33");
+		chevron33.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron33.setPosBox(new Rectangle(chevron12.getPosBox().getX()+chevron12.getImg().getTex().getWidth(),
+				chevron2.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron33.getImg().getTex().getWidth(),
+				chevron33.getImg().getTex().getHeight()));
+		ents.add(chevron33);
+		
+		Ent chevron34 = new Ent();
+		chevron34.setName("chevron34");
+		chevron34.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron34.setPosBox(new Rectangle(chevron13.getPosBox().getX()+chevron13.getImg().getTex().getWidth(),
+				chevron2.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron34.getImg().getTex().getWidth(),
+				chevron34.getImg().getTex().getHeight()));
+		ents.add(chevron34);
+		
+		Ent chevron35 = new Ent();
+		chevron35.setName("chevron35");
+		chevron35.setImg(Game.getGlobal().getImgByName("chevron-color"));
+		chevron35.setPosBox(new Rectangle(chevron14.getPosBox().getX()+chevron14.getImg().getTex().getWidth(),
+				chevron2.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron35.getImg().getTex().getWidth(),
+				chevron35.getImg().getTex().getHeight()));
+		ents.add(chevron35);
+		
+		return ents;
+	}
+	
 	public String getName() {
 		return name;
 	}

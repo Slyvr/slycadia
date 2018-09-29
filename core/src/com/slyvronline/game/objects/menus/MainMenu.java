@@ -23,6 +23,7 @@ public class MainMenu extends Menu{
 		
 		ArrayList<Ent> ents = new ArrayList<Ent>();
 		
+		/*
 		Ent bg07_1 = new Ent();
 		bg07_1.setName("bg07_1");
 		bg07_1.setImg(Game.getGlobal().getImgByName("bg07"));
@@ -31,6 +32,9 @@ public class MainMenu extends Menu{
 				bg07_1.getImg().getTex().getWidth(),
 				bg07_1.getImg().getTex().getHeight()));
 		ents.add(bg07_1);
+		*/
+		
+		ents.addAll(buildChevronBG());
 		
 		Ent logoTitle = new Ent();
 		logoTitle.setName("logoTitle");
@@ -78,13 +82,14 @@ public class MainMenu extends Menu{
 	public void update(float stateTime){
 		updateKeyboardNavigation();
 		updateKeyboardSelect();
+		cycleChevronBg();
 	}
 	
 	public void buttonSelect(){
 		Ent selected = this.getSelectedEnt();
 		if (selected.getName().equals("btnStart")){
 			Game.getGlobal().getSfxByName("papery").play();
-			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("gameselect"));
+			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("game"));
 		}
 		if (selected.getName().equals("btnCredits")){
 			Game.getGlobal().getSfxByName("papery").play();

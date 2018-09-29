@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.slyvronline.game.Game;
+import com.slyvronline.game.load.LoadLevel;
 import com.slyvronline.game.objects.Ent;
+import com.slyvronline.game.objects.GameInstance;
 import com.slyvronline.game.objects.Img;
 import com.slyvronline.game.objects.Menu;
+import com.slyvronline.game.objects.TwoDAdventureInstance;
 import com.slyvronline.game.utils.GameConstants;
 
 public class GameMenu extends Menu{
@@ -26,23 +29,19 @@ public class GameMenu extends Menu{
 	}
 	
 	public void update (float stateTime){
-		updateButtons();
-		updateButtonHover();
+		if (Game.getGlobal().getGame() == null){
+			Game.getGlobal().setGame(new TwoDAdventureInstance());
+			LoadLevel.loadAll();
+		}
+		
+		buttonDeselect();
 	}
 	
-	public void updateButtons(){
-		if (Gdx.input.justTouched()){
-			Rectangle mousePos = new Rectangle(Gdx.input.getX(),Gdx.graphics.getHeight()-Gdx.input.getY(),1,1);
-			for(Ent e : this.getEnts()){
-				Rectangle ePos = new Rectangle(e.getPosBox());
-				ePos.setX(ePos.getX()+Game.getGlobal().getViewport().x);
-				ePos.setY(ePos.getY()+Game.getGlobal().getViewport().y);
-				if (e.getName().contains("btn") && e.isDisplay()){
-					if (mousePos.overlaps(ePos)){
-						
-					}
-				}
-			}
+	public void buttonDeselect(){
+		if (Gdx.input.isKeyJustPressed(GameConstants.KEY_QUIT)){
+			Game.getGlobal().getSfxByName("papery").play();
+			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("main"));
+			Game.getGlobal().setGame(null);
 		}
 	}
 }

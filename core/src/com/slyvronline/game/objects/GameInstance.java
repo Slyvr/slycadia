@@ -11,7 +11,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.slyvronline.game.Game;
+import com.slyvronline.game.load.LoadLevel;
 import com.slyvronline.game.load.LoadMenus;
+import com.slyvronline.game.objects.tiles.Tile;
 import com.slyvronline.game.utils.GameConstants;
 
 
@@ -43,5 +45,11 @@ public class GameInstance {
 	public void update(){
 		
 	}
-	
+
+	public boolean isPaused() {
+		return paused;
+	}
+	public void setPaused(boolean paused) {
+		this.paused = paused;
+	}
 }

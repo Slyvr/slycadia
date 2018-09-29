@@ -21,6 +21,7 @@ public class SplashMenu extends Menu{
 		
 		ArrayList<Ent> ents = new ArrayList<Ent>();
 
+		/*
 		Ent bg07_1 = new Ent();
 		bg07_1.setName("bg07_1");
 		bg07_1.setImg(Game.getGlobal().getImgByName("bg07"));
@@ -29,6 +30,9 @@ public class SplashMenu extends Menu{
 				bg07_1.getImg().getTex().getWidth(),
 				bg07_1.getImg().getTex().getHeight()));
 		ents.add(bg07_1);
+		*/
+		
+		ents.addAll(buildChevronBG());
 		
 		Ent logo = new Ent();
 		logo.setName("logo");
@@ -45,6 +49,8 @@ public class SplashMenu extends Menu{
 	private static long startMillis;
 	
 	public void update(float stateTime){
+		
+		cycleChevronBg();
 		
 		if (startMillis==0) startMillis = System.currentTimeMillis();
 		else{

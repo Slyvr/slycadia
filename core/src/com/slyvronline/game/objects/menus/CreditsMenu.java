@@ -23,6 +23,7 @@ public class CreditsMenu extends Menu{
 		
 		ArrayList<Ent> ents = new ArrayList<Ent>();
 		
+		/*
 		Ent bg07_1 = new Ent();
 		bg07_1.setName("bg07_1");
 		bg07_1.setImg(Game.getGlobal().getImgByName("bg07"));
@@ -31,37 +32,25 @@ public class CreditsMenu extends Menu{
 				bg07_1.getImg().getTex().getWidth(),
 				bg07_1.getImg().getTex().getHeight()));
 		ents.add(bg07_1);
+		*/
 		
-		Ent logoCredits = new Ent();
-		logoCredits.setName("logoCredits");
-		logoCredits.setImg(Game.getGlobal().getImgByName("logoCredits"));
-		logoCredits.setPosBox(new Rectangle(Gdx.graphics.getWidth()/2 - logoCredits.getImg().getTex().getWidth()/2,
-				Gdx.graphics.getHeight() - logoCredits.getImg().getTex().getHeight(),
-				logoCredits.getImg().getTex().getWidth(),
-				logoCredits.getImg().getTex().getHeight()));
-		ents.add(logoCredits);
+		ents.addAll(buildChevronBG());
 		
-		Ent fntCredits = new Ent();
-		fntCredits.setName("fntCredits");
-		fntCredits.setFont(Game.getGlobal().getFontByName("AgencyFbGlow32"));
-		fntCredits.setPosBox(new Rectangle(logoCredits.getX(),
-				logoCredits.getY(),
-				0,
-				0));
-		fntCredits.setText("Created by Matthew Schrum aka Slyvr89\n\n"+
-				"https://github.com/Slyvr/slycadia\n\n"+
-				"Music by TeknoAxe.com and Purple-Planet.com\n\n" +
-				"SFX by freesound.org\n\n" +
-				"");
-		fntCredits.setColor(Color.WHITE);
-		ents.add(fntCredits);
+		Ent logo = new Ent();
+		logo.setName("logo");
+		logo.setImg(Game.getGlobal().getImgByName("logoSplash"));
+		logo.setPosBox(new Rectangle((Gdx.graphics.getWidth()/2)-(logo.getImg().getTex().getWidth()/2),
+				(Gdx.graphics.getHeight()/2)-(logo.getImg().getTex().getHeight()/2),
+				logo.getImg().getTex().getWidth(),
+				logo.getImg().getTex().getHeight()));
+		ents.add(logo);
 		
 		Ent btnBack = new Ent();
 		btnBack.setName("btnBack");
 		btnBack.setId(1);
 		btnBack.setImg(Game.getGlobal().getImgByName("btnBack"));
 		btnBack.setPosBox(new Rectangle((Gdx.graphics.getWidth()/2)-(btnBack.getImg().getTex().getWidth()/2),
-				0+15,
+				logo.getPosBox().getY() - btnBack.getImg().getTex().getHeight(),
 				btnBack.getImg().getTex().getWidth(),
 				btnBack.getImg().getTex().getHeight()));
 		btnBack.setSelected(true);
@@ -73,6 +62,7 @@ public class CreditsMenu extends Menu{
 	public void update (float stateTime){
 		updateKeyboardNavigation();
 		updateKeyboardSelect();
+		cycleChevronBg();
 	}
 	
 	public void buttonSelect(){

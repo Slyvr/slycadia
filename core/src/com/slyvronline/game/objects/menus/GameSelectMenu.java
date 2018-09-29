@@ -24,6 +24,7 @@ public class GameSelectMenu extends Menu{
 		
 		ArrayList<Ent> ents = new ArrayList<Ent>();
 		
+		/*
 		Ent bg07_1 = new Ent();
 		bg07_1.setName("bg07_1");
 		bg07_1.setImg(Game.getGlobal().getImgByName("bg07"));
@@ -32,6 +33,9 @@ public class GameSelectMenu extends Menu{
 				bg07_1.getImg().getTex().getWidth(),
 				bg07_1.getImg().getTex().getHeight()));
 		ents.add(bg07_1);
+		*/
+		
+		ents.addAll(buildChevronBG());
 		
 		
 		Ent btnBack = new Ent();
@@ -51,6 +55,7 @@ public class GameSelectMenu extends Menu{
 	public void update (float stateTime){
 		updateKeyboardNavigation();
 		updateKeyboardSelect();
+		cycleChevronBg();
 	}
 	
 	public void buttonSelect(){

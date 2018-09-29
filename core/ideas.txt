@@ -1,0 +1,78 @@
+Simple 2d top down rpg action - zelda-like
+
+Smash TV clone
+
+2 player tank battles - co op against AI tanks or pvp
+
+2 player top down shooter pvp
+
+2 player black hole 'katamari'-like - hole.io copy
+
+boring platformer
+
+
+
+semi transparent single pixel yellowish dots across whole screen makes it look a bit 'CRT' like
+
+
+
+https://www.youtube.com/watch?v=prR544uH9lg
+13:00
+Play as circle in center with shield - black circles come at you, shield them and they turn white and light up darkened area around, showing black circles coming at you
+
+
+https://www.youtube.com/watch?v=T57TlT5CiT0
+12:00
+Guitar hero type game - successful beats attack enemies
+
+
+
+https://www.youtube.com/watch?v=s2ebZXQ_J8Q
+1:40
+Play RPG with no fighting, just dodging while more loot slows you down.  strategic loot gathering and escaping with loot
+
+3:40
+Asteroids type game where you are asteroid with shield.  Bounce enemy attacks back at them or have enemies shoot each other
+
+8:00
+Kill yourself to injure your opponent
+
+10:20
+Pong/breakout where you avoid hitting the ball
+
+
+
+Pong/breaker but you defend your breaker block wall.  First player's break wall to be destroyed looses
+
+
+Joust/Balloon clone
+
+
+Some simple "stardew valley fishing" type bar goes up and down and hit it at the right time to do a thing
+--that old flash game where you bat baby seals into the ocean and get the furthest distance kind of thing
+--Skee ball
+
+Infinite runner, press button to jump
+Infinite bouncing / platformer going up
+
+https://www.youtube.com/watch?v=HtNgD4JuQ-E
+Target shooter - infinite gun shooting with movable target on screen.  Hold B button to stop shooting and joystick controls movement - can be 2P coop
+
+
+TMNT Turtles in time style fighter
+
+
+Rampage clone
+
+
+
+
+Recycling game where you have to catch falling garbage that is recyclable, any negative points you earn shows as a mounting landfill in background
+shark hole.io clone
+circuits puzzle game
+Rocket fueling button masher
+Brush moving / button masher paleontology game
+
+
+
+
