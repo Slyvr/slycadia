@@ -44,6 +44,7 @@ public class Ent {
 	private Img img;
 	private Color color;
 	private float rotation;
+	private boolean rotate;
 	private int scaleX;
 	private int scaleY;
 	private boolean flipX;
@@ -125,7 +126,7 @@ public class Ent {
 					int srcY=0;
 					int srcWidth=this.getImg().getTex().getWidth();
 					int srcHeight=this.getImg().getTex().getHeight();
-					
+
 					batch.draw(this.getImg().getTex(),
 							this.getX(),
 							this.getY(),
@@ -157,7 +158,6 @@ public class Ent {
 	public void setX(float x){
 		this.posBox.setX(x);
 		this.collisionBox.setX(x + (this.collisionBox.width/2));
-		//this.collisionBox.setX(x);
 	}
 	
 	public float getX(){
@@ -167,7 +167,6 @@ public class Ent {
 	public void setY(float y){
 		this.posBox.setY(y);
 		this.collisionBox.setY(y + (this.collisionBox.height/2));
-		//this.collisionBox.setY(y);
 	}
 	
 	public float getY(){
@@ -239,6 +238,8 @@ public class Ent {
 		this.posBox = posBox;
 		this.collisionBox.x = this.posBox.x;
 		this.collisionBox.y = this.posBox.y;
+		this.centerX = (int) (this.posBox.getWidth()/2);
+		this.centerY = (int) (this.posBox.getHeight()/2);
 	}
 	public int getCenterX() {
 		return centerX;
@@ -335,5 +336,11 @@ public class Ent {
 	}
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+	public boolean isRotate() {
+		return rotate;
+	}
+	public void setRotate(boolean rotate) {
+		this.rotate = rotate;
 	}
 }

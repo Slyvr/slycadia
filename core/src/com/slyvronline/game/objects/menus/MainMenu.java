@@ -1,14 +1,13 @@
 package com.slyvronline.game.objects.menus;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.slyvronline.game.Game;
-import com.slyvronline.game.controllers.Xbox360Controller;
 import com.slyvronline.game.objects.Ent;
-import com.slyvronline.game.objects.Img;
 import com.slyvronline.game.objects.Menu;
 import com.slyvronline.game.utils.GameConstants;
 
@@ -35,6 +34,17 @@ public class MainMenu extends Menu{
 		*/
 		
 		ents.addAll(buildChevronBG());
+		
+		Ent blackhole = new Ent();
+		blackhole.setName("blackhole");
+		blackhole.setImg(Game.getGlobal().getImgByName("blackhole-icon"));
+		blackhole.setPosBox(new Rectangle(
+				Gdx.graphics.getWidth()/2 - blackhole.getImg().getTex().getWidth()*3/2,
+				Gdx.graphics.getHeight()/2 - blackhole.getImg().getTex().getHeight()*3/2,
+				blackhole.getImg().getTex().getWidth()*3,
+				blackhole.getImg().getTex().getHeight()*3));
+		blackhole.setFlipX(true);
+		ents.add(blackhole);
 		
 		Ent logoTitle = new Ent();
 		logoTitle.setName("logoTitle");
@@ -79,10 +89,19 @@ public class MainMenu extends Menu{
 		this.setEnts(ents);
 	}
 	
+	public void render(SpriteBatch batch){
+		for(Ent e : this.getEnts()){
+			e.render(batch);
+		}
+	}
+	
 	public void update(float stateTime){
 		updateKeyboardNavigation();
 		updateKeyboardSelect();
 		cycleChevronBg();
+		
+		Ent blackhole = this.getEntByName("blackhole");
+		blackhole.setRotation(blackhole.getRotation() + 1.0f);
 	}
 	
 	public void buttonSelect(){

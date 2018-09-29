@@ -19,4 +19,5 @@ public class GameConstants {
 	public static final int SEC_KEY_A = Keys.GRAVE;
 	public static final int SEC_KEY_B = Keys.NUM_1;
 	public static final int KEY_QUIT = Keys.ESCAPE;
+	public static final int MAX_TIMER = 60;
 }

@@ -1,0 +1,8 @@
+{
+  "title":"Your Game", 
+  "min_players":"1", 
+  "max_players":"2", 
+  "executable":"yourgame.exe", 
+  "legacy_controls":"false", 
+  "image_url":"yourgameimage.png"
+}

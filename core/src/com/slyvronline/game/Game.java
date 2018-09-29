@@ -75,6 +75,7 @@ public class Game extends ApplicationAdapter {
 		if (global.getCurrentMenu().getName().equals("game") && global.getGame() != null){
 			global.getGame().update();
 		}
+		//handleCameraInput();
 		
 		//RENDERS
 		batch.setProjectionMatrix(global.getCamera().combined);
@@ -125,11 +126,12 @@ public class Game extends ApplicationAdapter {
 		int world_width = 1000;
 		int world_height = 1000;
 		
-		cam.zoom = MathUtils.clamp(cam.zoom, 0.1f, world_height/cam.viewportHeight);
+		//max zoom out
+		//cam.zoom = MathUtils.clamp(cam.zoom, 0.1f, world_height/cam.viewportHeight);
 		float effectiveViewportWidth = cam.viewportWidth * cam.zoom;
 		float effectiveViewportHeight = cam.viewportHeight * cam.zoom;
-		cam.position.x = MathUtils.clamp(cam.position.x, effectiveViewportWidth / 2f, world_width - effectiveViewportWidth / 2f);
-		cam.position.y = MathUtils.clamp(cam.position.y, effectiveViewportHeight / 2f, world_height - effectiveViewportHeight / 2f);
+		//cam.position.x = MathUtils.clamp(cam.position.x, effectiveViewportWidth / 2f, world_width - effectiveViewportWidth / 2f);
+		//cam.position.y = MathUtils.clamp(cam.position.y, effectiveViewportHeight / 2f, world_height - effectiveViewportHeight / 2f);
 	}
 	
 	
