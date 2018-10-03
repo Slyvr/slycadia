@@ -14,7 +14,6 @@ import com.slyvronline.game.objects.LevelEditInstance.EditStatus;
 import com.slyvronline.game.objects.Menu;
 import com.slyvronline.game.objects.ents.Consumable;
 import com.slyvronline.game.utils.GameConstants;
-import com.slyvronline.game.utils.PingWebsite;
 
 public class LevelEditMenu extends Menu{
 

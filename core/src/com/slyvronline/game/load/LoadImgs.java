@@ -23,7 +23,10 @@ public class LoadImgs {
 		imgs = new ArrayList<Img>();
 		
 		//Set working directory to core/assets
-		FileHandle fh = Gdx.files.internal("data/");
+		FileHandle fh = Gdx.files.local("data/");
+		if (!fh.isDirectory()){
+			System.out.println("Error with data directory!");
+		}
 		loadImgs(fh);
 		
 		Game.getGlobal().setImgs(imgs);
