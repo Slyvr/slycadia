@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		DisplayMode displayMode = LwjglApplicationConfiguration.getDesktopDisplayMode();
 		
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "2018ArcadeJam";
+		cfg.title = "2018ArcadeJam - A Blackhole Ate My Town";
 		
 		//Set to windowed mode, resolution less than monitor fullscreen
 		cfg.fullscreen = false;

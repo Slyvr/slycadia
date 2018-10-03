@@ -1,20 +1,6 @@
 package com.slyvronline.game.objects;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
-import com.slyvronline.game.Game;
-import com.slyvronline.game.load.LoadLevel;
-import com.slyvronline.game.load.LoadMenus;
-import com.slyvronline.game.objects.tiles.Tile;
-import com.slyvronline.game.utils.GameConstants;
 
 
 /**

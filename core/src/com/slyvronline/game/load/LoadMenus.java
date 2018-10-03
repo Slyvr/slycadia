@@ -7,6 +7,7 @@ import com.slyvronline.game.objects.Menu;
 import com.slyvronline.game.objects.menus.CreditsMenu;
 import com.slyvronline.game.objects.menus.GameMenu;
 import com.slyvronline.game.objects.menus.GameSelectMenu;
+import com.slyvronline.game.objects.menus.LevelEditMenu;
 import com.slyvronline.game.objects.menus.MainMenu;
 import com.slyvronline.game.objects.menus.SplashMenu;
 
@@ -26,6 +27,7 @@ public class LoadMenus {
 		menus.add(new CreditsMenu());
 		menus.add(new GameSelectMenu());
 		menus.add(new GameMenu());
+		menus.add(new LevelEditMenu());
 		
 		Game.getGlobal().setMenus(menus);
 		Game.getGlobal().setCurrentMenu(menus.get(0));

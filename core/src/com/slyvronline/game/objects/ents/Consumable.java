@@ -1,5 +1,7 @@
 package com.slyvronline.game.objects.ents;
 
+import java.util.ArrayList;
+
 import com.slyvronline.game.objects.Ent;
 
 public class Consumable extends Ent{
@@ -14,9 +16,40 @@ public class Consumable extends Ent{
 	private int consumeCount;
 	private int consumeCountMax = 50;
 	private boolean destroy;
+	private boolean shakeRight;
+	private boolean shakeLeft;
+	private ArrayList<String> animates;
+	
+	public Consumable(){
+		
+	}
+	
+	public Consumable(Consumable c){
+		super(c);
+		this.size = c.getSize();
+		this.animateCounter = c.getAnimateCounter();
+		this.animateCounterMax = c.getAnimateCounterMax();
+		this.animateCountUp = c.isAnimateCountUp();
+		this.animateAmount = c.getAnimateAmount();
+		this.animateSpeed = c.getAnimateSpeed();
+		this.consumed = false;
+		this.animates = new ArrayList<String>();
+		animates.addAll(c.getAnimates());
+	}
 	
 	public void animate(){
 		consume();
+		for(String animate : animates){
+			if (animate.equals("consume")){
+				consume();
+			}
+			else if (animate.equals("hop")){
+				hop();
+			}
+			else if (animate.equals("shimmy")){
+				shimmy();
+			}
+		}
 	}
 	
 	public void consume(){
@@ -148,6 +181,29 @@ public class Consumable extends Ent{
 	public void setDestroy(boolean destroy) {
 		this.destroy = destroy;
 	}
-	
+
+	public boolean isShakeRight() {
+		return shakeRight;
+	}
+
+	public void setShakeRight(boolean shakeRight) {
+		this.shakeRight = shakeRight;
+	}
+
+	public boolean isShakeLeft() {
+		return shakeLeft;
+	}
+
+	public void setShakeLeft(boolean shakeLeft) {
+		this.shakeLeft = shakeLeft;
+	}
+
+	public ArrayList<String> getAnimates() {
+		return animates;
+	}
+
+	public void setAnimates(ArrayList<String> animates) {
+		this.animates = animates;
+	}
 	
 }

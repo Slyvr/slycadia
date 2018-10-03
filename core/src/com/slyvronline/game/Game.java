@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.slyvronline.game.controllers.GameController;
+import com.slyvronline.game.load.LoadConsumables;
 import com.slyvronline.game.load.LoadFonts;
 import com.slyvronline.game.load.LoadImgs;
 import com.slyvronline.game.load.LoadMenus;
@@ -36,14 +38,13 @@ public class Game extends ApplicationAdapter {
 		
 		DisplayMode displayMode = Gdx.graphics.getDisplayMode();
 		
-		
-		
 		if (displayMode != null)
 			this.writeLog("info", "Monitor Resolution: "+displayMode.width+"x"+displayMode.height);
 		
 		this.writeLog("info", "Game Resolution: "+Gdx.graphics.getWidth()+"x"+Gdx.graphics.getHeight());
 		
 		LoadImgs.load();
+		LoadConsumables.load();
 		LoadFonts.load();
 		LoadMenus.load();
 		LoadSfx.load();
@@ -51,8 +52,20 @@ public class Game extends ApplicationAdapter {
 		
 		loadControllers();
 		
-		global.setCurrentTrack(global.getTrackByName("shopping"));
+		global.setCurrentTrack(global.getTrackByName("knock"));
 		global.getCurrentTrack().play();
+		global.getCurrentTrack().getMusic().setLooping(true);
+		
+		//Initial load of levelData in case it was overwritten
+		FileHandle fh = Gdx.files.local("data/levels/levelDataFile.xml");
+		FileHandle fh2 = Gdx.files.internal("data/levels/levelDataFile_bak.xml");
+		FileHandle fh3 = Gdx.files.local("data/levels/levelDataFile"+System.currentTimeMillis()+".xml");
+		String fhContent = fh.readString();
+		String fh2Content = fh.readString();
+		if (!fh2Content.equals(fhContent)){
+			fh3.writeString(fhContent, false);
+			fh.writeString(fh2Content, false);
+		}
 	}
 
 	@Override
@@ -72,7 +85,7 @@ public class Game extends ApplicationAdapter {
 		//handleCameraInput();
 		global.getCamera().update();
 		global.getCurrentMenu().update(global.getStateTime());
-		if (global.getCurrentMenu().getName().equals("game") && global.getGame() != null){
+		if (global.getGame() != null){
 			global.getGame().update();
 		}
 		//handleCameraInput();
@@ -80,11 +93,11 @@ public class Game extends ApplicationAdapter {
 		//RENDERS
 		batch.setProjectionMatrix(global.getCamera().combined);
 		batch.begin();
-		if (global.getCurrentMenu().getName().equals("game") && global.getGame() != null){
+		if (global.getGame() != null){
 			global.getGame().render(batch);
 		}
 		batch.end();
-		
+
 		menuBatch.begin();
 		global.getCurrentMenu().render(menuBatch);
 		menuBatch.end();

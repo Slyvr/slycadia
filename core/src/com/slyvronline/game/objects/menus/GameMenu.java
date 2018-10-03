@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.slyvronline.game.Game;
-import com.slyvronline.game.load.LoadLevel;
 import com.slyvronline.game.objects.BlackHoleInstance;
 import com.slyvronline.game.objects.Ent;
 import com.slyvronline.game.objects.Menu;
-import com.slyvronline.game.objects.RecycleGameInstance;
 import com.slyvronline.game.utils.GameConstants;
+import com.slyvronline.game.utils.PingWebsite;
 
 public class GameMenu extends Menu{
 
@@ -74,6 +73,7 @@ public class GameMenu extends Menu{
 	
 	public void buttonDeselect(){
 		if (Gdx.input.isKeyJustPressed(GameConstants.KEY_QUIT)){
+			PingWebsite.ping(Integer.parseInt(this.getEntByName("score").getText().replace("Score: ", "")));
 			this.getEntByName("scaleup").setDisplay(false);
 			this.getEntByName("timeup").setDisplay(false);
 			this.getEntByName("score").setText("Score: 0");
