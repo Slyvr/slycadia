@@ -162,10 +162,10 @@ public class Menu {
 			if (e.getName().contains("chevron")){
 				e.setX(e.getX() + 1);
 				e.setY(e.getY() + 1);
-				if (e.getX() >= 2048){
+			if (e.getX() >= e.getWidth()*4){
 					e.setX(-e.getPosBox().getWidth());
 				}
-				if (e.getY() >= 1024){
+				if (e.getY() >= e.getHeight()*3){
 					e.setY(-e.getPosBox().getHeight());
 				}
 			}
@@ -220,6 +220,15 @@ public class Menu {
 				chevron15.getImg().getTex().getHeight()));
 		ents.add(chevron15);
 		
+		Ent chevron16 = new Ent();
+		chevron16.setName("chevron16");
+		chevron16.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron16.setPosBox(new Rectangle(chevron15.getPosBox().getX()+chevron15.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY(),
+				chevron16.getImg().getTex().getWidth(),
+				chevron16.getImg().getTex().getHeight()));
+		ents.add(chevron16);
+		
 		Ent chevron2 = new Ent();
 		chevron2.setName("chevron2");
 		chevron2.setImg(Game.getGlobal().getImgByName("chevron-blue"));
@@ -265,6 +274,15 @@ public class Menu {
 				chevron25.getImg().getTex().getHeight()));
 		ents.add(chevron25);
 		
+		Ent chevron26 = new Ent();
+		chevron26.setName("chevron26");
+		chevron26.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron26.setPosBox(new Rectangle(chevron25.getPosBox().getX()+chevron25.getImg().getTex().getWidth(),
+				chevron1.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron26.getImg().getTex().getWidth(),
+				chevron26.getImg().getTex().getHeight()));
+		ents.add(chevron26);
+		
 		Ent chevron3 = new Ent();
 		chevron3.setName("chevron3");
 		chevron3.setImg(Game.getGlobal().getImgByName("chevron-blue"));
@@ -309,6 +327,69 @@ public class Menu {
 				chevron35.getImg().getTex().getWidth(),
 				chevron35.getImg().getTex().getHeight()));
 		ents.add(chevron35);
+		
+		Ent chevron36 = new Ent();
+		chevron36.setName("chevron36");
+		chevron36.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron36.setPosBox(new Rectangle(chevron35.getPosBox().getX()+chevron35.getImg().getTex().getWidth(),
+				chevron2.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron36.getImg().getTex().getWidth(),
+				chevron36.getImg().getTex().getHeight()));
+		ents.add(chevron36);
+		
+		Ent chevron4 = new Ent();
+		chevron4.setName("chevron4");
+		chevron4.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron4.setPosBox(new Rectangle(chevron1.getPosBox().getX(),
+				chevron3.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron4.getImg().getTex().getWidth(),
+				chevron4.getImg().getTex().getHeight()));
+		ents.add(chevron4);
+		
+		Ent chevron42 = new Ent();
+		chevron42.setName("chevron42");
+		chevron42.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron42.setPosBox(new Rectangle(chevron1.getPosBox().getX()+chevron1.getImg().getTex().getWidth(),
+				chevron3.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron42.getImg().getTex().getWidth(),
+				chevron42.getImg().getTex().getHeight()));
+		ents.add(chevron42);
+		
+		Ent chevron43 = new Ent();
+		chevron43.setName("chevron43");
+		chevron43.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron43.setPosBox(new Rectangle(chevron12.getPosBox().getX()+chevron12.getImg().getTex().getWidth(),
+				chevron3.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron43.getImg().getTex().getWidth(),
+				chevron43.getImg().getTex().getHeight()));
+		ents.add(chevron43);
+		
+		Ent chevron44 = new Ent();
+		chevron44.setName("chevron44");
+		chevron44.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron44.setPosBox(new Rectangle(chevron13.getPosBox().getX()+chevron13.getImg().getTex().getWidth(),
+				chevron3.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron44.getImg().getTex().getWidth(),
+				chevron44.getImg().getTex().getHeight()));
+		ents.add(chevron44);
+		
+		Ent chevron45 = new Ent();
+		chevron45.setName("chevron45");
+		chevron45.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron45.setPosBox(new Rectangle(chevron14.getPosBox().getX()+chevron14.getImg().getTex().getWidth(),
+				chevron3.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron45.getImg().getTex().getWidth(),
+				chevron45.getImg().getTex().getHeight()));
+		ents.add(chevron45);
+		
+		Ent chevron46 = new Ent();
+		chevron46.setName("chevron46");
+		chevron46.setImg(Game.getGlobal().getImgByName("chevron-blue"));
+		chevron46.setPosBox(new Rectangle(chevron45.getPosBox().getX()+chevron45.getImg().getTex().getWidth(),
+				chevron3.getPosBox().getY()+chevron1.getImg().getTex().getHeight(),
+				chevron46.getImg().getTex().getWidth(),
+				chevron46.getImg().getTex().getHeight()));
+		ents.add(chevron46);
 		
 		return ents;
 	}

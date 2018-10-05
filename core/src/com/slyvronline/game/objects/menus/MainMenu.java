@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -57,7 +58,7 @@ public class MainMenu extends Menu{
 		logoTitle.setName("logoTitle");
 		logoTitle.setImg(Game.getGlobal().getImgByName("logoTitle"));
 		logoTitle.setPosBox(new Rectangle((int) ((Gdx.graphics.getWidth()/2)-(logoTitle.getImg().getTex().getWidth()/2)),
-				400,
+				Gdx.graphics.getHeight() - logoTitle.getImg().getTex().getHeight() - 200,
 				logoTitle.getImg().getTex().getWidth(),
 				logoTitle.getImg().getTex().getHeight()));
 		ents.add(logoTitle);
@@ -101,9 +102,20 @@ public class MainMenu extends Menu{
 				btnExit.getY(),
 				btnLevelEditor.getImg().getTex().getWidth(),
 				btnLevelEditor.getImg().getTex().getHeight()));
-		ents.add(btnLevelEditor);
+		if (Game.getConfig("loadLevelEdit").equals("true")){
+			ents.add(btnLevelEditor);
+		}
+		
+		Ent highScore = new Ent();
+		highScore.setName("highScore");
+		highScore.setFont(Game.getGlobal().getFontByName("leckerli30"));
+		highScore.setText("High Score: ");
+		highScore.setPosBox(new Rectangle(100,100,0,0));
+		ents.add(highScore);
 		
 		this.setEnts(ents);
+		
+		updateHighScore();
 	}
 	
 	public void render(SpriteBatch batch){
@@ -136,6 +148,7 @@ public class MainMenu extends Menu{
 		if (selected.getName().equals("btnStart")){
 			Game.getGlobal().getSfxByName("papery").play();
 			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("game"));
+			Game.getGlobal().setGame(null);
 		}
 		if (selected.getName().equals("btnCredits")){
 			Game.getGlobal().getSfxByName("papery").play();
@@ -147,6 +160,7 @@ public class MainMenu extends Menu{
 		if (selected.getName().equals("btnLevelEditor")){
 			Game.getGlobal().getSfxByName("papery").play();
 			Game.getGlobal().setCurrentMenu(Game.getGlobal().getMenuByName("leveledit"));
+			Game.getGlobal().setGame(null);
 		}
 	}
 	
@@ -154,6 +168,18 @@ public class MainMenu extends Menu{
 		if (Gdx.input.isKeyJustPressed(GameConstants.KEY_QUIT)){
 			Gdx.app.exit();
 		}
+	}
+	
+	public void updateHighScore(){
+		String scoresTxt = Gdx.files.local("data/levels/scores.txt").readString();
+		String[] scores = scoresTxt.split("\n");
+		int highScore = 0;
+		for(String score : scores){
+			if (Integer.parseInt(score) > highScore){
+				highScore = Integer.parseInt(score);
+			}
+		}
+		this.getEntByName("highScore").setText("High Score: "+highScore);
 	}
 	
 	public void updateConsumableAnimation(){

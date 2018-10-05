@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input.Keys;
 
 public class GameConstants {
 
-	public static final int SPLASH_MENU_WAIT = 100;
+	public static final int SPLASH_MENU_WAIT = 4000;
 	public static final int AXIS_TIMER_MAX = 1000;
 	public static final int FIRST_KEY_UP = Keys.UP;
 	public static final int FIRST_KEY_DOWN = Keys.DOWN;

@@ -56,6 +56,24 @@ public class CreditsMenu extends Menu{
 		btnBack.setSelected(true);
 		ents.add(btnBack);
 		
+		Ent creditsLeft = new Ent();
+		creditsLeft.setName("creditsLeft");
+		creditsLeft.setFont(Game.getGlobal().getFontByName("roboto20"));
+		creditsLeft.setText("Created in libGDX\n"
+				+ "libgdx.badlogicgames.com\n\n"
+				+ "Thanks to @StlGameJam\n"
+				+ "stlgamejam.com");
+		creditsLeft.setPosBox(new Rectangle(64,Gdx.graphics.getHeight()-64,0,0));
+		ents.add(creditsLeft);
+
+		Ent creditsRight = new Ent();
+		creditsRight.setName("creditsRight");
+		creditsRight.setFont(Game.getGlobal().getFontByName("roboto20"));
+		creditsRight.setText("Music by Teknoaxe\n"
+				+ "teknoaxe.com");
+		creditsRight.setPosBox(new Rectangle(logo.getX()+logo.getWidth(),Gdx.graphics.getHeight()-64,0,0));
+		ents.add(creditsRight);
+		
 		this.setEnts(ents);
 	}
 	

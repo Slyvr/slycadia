@@ -3,6 +3,7 @@ package com.slyvronline.game.objects;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.slyvronline.game.Game;
@@ -114,58 +115,95 @@ public class BlackHoleInstance extends GameInstance {
 			
 			if (timeSpent/1000 >= GameConstants.MAX_TIMER){
 				this.setPaused(true);
-				Game.getGlobal().getCurrentMenu().getEntByName("timeup").setDisplay(true);
 			}
 			
 			//Update camera zoom
 			if (Game.getGlobal().getCamera().zoom < camZoom){
 				Game.getGlobal().getCamera().zoom = Game.getGlobal().getCamera().zoom + 0.001f;
+				//Stop movement outside of gameboard
+				float effectiveViewportWidth = Game.getGlobal().getCamera().viewportWidth * Game.getGlobal().getCamera().zoom;
+				float effectiveViewportHeight = Game.getGlobal().getCamera().viewportHeight * Game.getGlobal().getCamera().zoom;
+				if (Game.getGlobal().getCamera().position.x < gameboard.getX()+(effectiveViewportWidth/2)){
+					Game.getGlobal().getCamera().position.x = gameboard.getX()+(effectiveViewportWidth/2);
+				}
+				if (Game.getGlobal().getCamera().position.x > gameboard.getWidth()-(effectiveViewportWidth/2)){
+					Game.getGlobal().getCamera().position.x = gameboard.getWidth()-(effectiveViewportWidth/2);
+				}
+				if (Game.getGlobal().getCamera().position.y < gameboard.getY()+(effectiveViewportHeight/2)){
+					Game.getGlobal().getCamera().position.y = gameboard.getY()+(effectiveViewportHeight/2);
+				}
+				if (Game.getGlobal().getCamera().position.y > gameboard.getHeight()-(effectiveViewportHeight/2)){
+					Game.getGlobal().getCamera().position.y = gameboard.getHeight()-(effectiveViewportHeight/2);
+				}
 			}
 		}
 	}
 	
 	public void updateMove(){
+		OrthographicCamera cam = Game.getGlobal().getCamera();
 		if (Gdx.input.isKeyPressed(GameConstants.FIRST_KEY_DOWN) || Gdx.input.isKeyPressed(GameConstants.SEC_KEY_DOWN)){
-			blackhole.setY(blackhole.getY() - moveSpeed);
-			if (blackhole.getY() <= gameboard.getY()){
-				blackhole.setY(blackhole.getY() + moveSpeed);
+			cam.position.y = cam.position.y - moveSpeed;
+			if (blackhole != null){
+				blackhole.setY(blackhole.getY() - moveSpeed);
+				if (blackhole.getY() <= gameboard.getY()){
+					blackhole.setY(blackhole.getY() + moveSpeed);
+				}
+				if (blackhole.getY() > cam.position.y){
+					cam.position.y = cam.position.y + moveSpeed;
+				}
 			}
 		}
 		if (Gdx.input.isKeyPressed(GameConstants.FIRST_KEY_UP) || Gdx.input.isKeyPressed(GameConstants.SEC_KEY_UP)){
-			blackhole.setY(blackhole.getY() + moveSpeed);
-			if (blackhole.getY() >= gameboard.getHeight() - blackhole.getHeight()){
-				blackhole.setY(blackhole.getY() - moveSpeed);
+			cam.position.y = cam.position.y + moveSpeed;
+			if (blackhole != null){
+				blackhole.setY(blackhole.getY() + moveSpeed);
+				if (blackhole.getY() >= gameboard.getHeight() - blackhole.getHeight()){
+					blackhole.setY(blackhole.getY() - moveSpeed);
+				}
+				if (blackhole.getY() < cam.position.y){
+					cam.position.y = cam.position.y - moveSpeed;
+				}
 			}
 		}
 		if (Gdx.input.isKeyPressed(GameConstants.FIRST_KEY_LEFT) || Gdx.input.isKeyPressed(GameConstants.SEC_KEY_LEFT)){
-			blackhole.setX(blackhole.getX() - moveSpeed);
-			if (blackhole.getX() <= gameboard.getX()){
-				blackhole.setX(blackhole.getX() + moveSpeed);
+			cam.position.x = cam.position.x - moveSpeed;
+			if (blackhole != null){
+				blackhole.setX(blackhole.getX() - moveSpeed);
+				if (blackhole.getX() <= gameboard.getX()){
+					blackhole.setX(blackhole.getX() + moveSpeed);
+				}
+				if (blackhole.getX() > cam.position.x){
+					cam.position.x = cam.position.x + moveSpeed;
+				}
 			}
 		}
 		if (Gdx.input.isKeyPressed(GameConstants.FIRST_KEY_RIGHT) || Gdx.input.isKeyPressed(GameConstants.SEC_KEY_RIGHT)){
-			blackhole.setX(blackhole.getX() + moveSpeed);
-			if (blackhole.getX() >= gameboard.getWidth() - blackhole.getWidth()){
-				blackhole.setX(blackhole.getX() - moveSpeed);
+			cam.position.x = cam.position.x + moveSpeed;
+			if (blackhole != null){
+				blackhole.setX(blackhole.getX() + moveSpeed);
+				if (blackhole.getX() >= gameboard.getWidth() - blackhole.getWidth()){
+					blackhole.setX(blackhole.getX() - moveSpeed);
+				}
+				if (blackhole.getX() < cam.position.x){
+					cam.position.x = cam.position.x - moveSpeed;
+				}
 			}
 		}
-		Game.getGlobal().getCamera().position.x = blackhole.getPosBox().getX();
-		Game.getGlobal().getCamera().position.y = blackhole.getPosBox().getY();
 		
 		//Stop movement outside of gameboard
-		float effectiveViewportWidth = Game.getGlobal().getCamera().viewportWidth * Game.getGlobal().getCamera().zoom;
-		float effectiveViewportHeight = Game.getGlobal().getCamera().viewportHeight * Game.getGlobal().getCamera().zoom;
-		if (Game.getGlobal().getCamera().position.x < gameboard.getX()+(effectiveViewportWidth/2)){
-			Game.getGlobal().getCamera().position.x = gameboard.getX()+(effectiveViewportWidth/2);
+		float effectiveViewportWidth = cam.viewportWidth * cam.zoom;
+		float effectiveViewportHeight = cam.viewportHeight * cam.zoom;
+		if (cam.position.x < gameboard.getX()+(effectiveViewportWidth/2)){
+			cam.position.x = gameboard.getX()+(effectiveViewportWidth/2);
 		}
-		if (Game.getGlobal().getCamera().position.x > gameboard.getWidth()-(effectiveViewportWidth/2)){
-			Game.getGlobal().getCamera().position.x = gameboard.getWidth()-(effectiveViewportWidth/2);
+		if (cam.position.x > gameboard.getWidth()-(effectiveViewportWidth/2)){
+			cam.position.x = gameboard.getWidth()-(effectiveViewportWidth/2);
 		}
-		if (Game.getGlobal().getCamera().position.y < gameboard.getY()+(effectiveViewportHeight/2)){
-			Game.getGlobal().getCamera().position.y = gameboard.getY()+(effectiveViewportHeight/2);
+		if (cam.position.y < gameboard.getY()+(effectiveViewportHeight/2)){
+			cam.position.y = gameboard.getY()+(effectiveViewportHeight/2);
 		}
-		if (Game.getGlobal().getCamera().position.y > gameboard.getHeight()-(effectiveViewportHeight/2)){
-			Game.getGlobal().getCamera().position.y = gameboard.getHeight()-(effectiveViewportHeight/2);
+		if (cam.position.y > gameboard.getHeight()-(effectiveViewportHeight/2)){
+			cam.position.y = gameboard.getHeight()-(effectiveViewportHeight/2);
 		}
 	}
 	
@@ -191,8 +229,8 @@ public class BlackHoleInstance extends GameInstance {
 			blackhole.setCenterX((int) (blackhole.getWidth()/2));
 			blackhole.setCenterY((int) (blackhole.getHeight()/2));
 			Game.getGlobal().getCurrentMenu().getEntByName("scaleup").setDisplay(true);
-			moveSpeed = 0.8f;
-			camZoom = 1.8f;
+			moveSpeed = 1.0f;
+			camZoom = 1.2f;
 		}
 		else if (score >= 180){
 			if (blackholeSize != 5) scaleUpTimer = 50;
@@ -202,8 +240,8 @@ public class BlackHoleInstance extends GameInstance {
 			blackhole.setCenterX((int) (blackhole.getWidth()/2));
 			blackhole.setCenterY((int) (blackhole.getHeight()/2));
 			Game.getGlobal().getCurrentMenu().getEntByName("scaleup").setDisplay(true);
-			moveSpeed = 0.8f;
-			camZoom = 1.5f;
+			moveSpeed = 1.0f;
+			camZoom = 1.2f;
 		}
 		else if (score >= 100){
 			if (blackholeSize != 4) scaleUpTimer = 50;

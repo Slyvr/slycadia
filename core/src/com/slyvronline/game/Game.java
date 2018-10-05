@@ -1,5 +1,8 @@
 package com.slyvronline.game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -7,9 +10,12 @@ import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -25,9 +31,12 @@ import com.slyvronline.game.objects.Global;
 public class Game extends ApplicationAdapter {
 	
 	private static Global global;
+	private static Map<String,String> gameConfig;
 	
 	@Override
 	public void create() {
+		loadConfigs();
+		
 		global = new Global();
 		global.setDefaultScreenWidth(Gdx.graphics.getWidth());
 		global.setDefaultScreenHeight(Gdx.graphics.getHeight());
@@ -57,14 +66,17 @@ public class Game extends ApplicationAdapter {
 		global.getCurrentTrack().getMusic().setLooping(true);
 		
 		//Initial load of levelData in case it was overwritten
-		FileHandle fh = Gdx.files.local("data/levels/levelDataFile.xml");
-		FileHandle fh2 = Gdx.files.internal("data/levels/levelDataFile_bak.xml");
-		FileHandle fh3 = Gdx.files.local("data/levels/levelDataFile"+System.currentTimeMillis()+".xml");
-		String fhContent = fh.readString();
-		String fh2Content = fh.readString();
-		if (!fh2Content.equals(fhContent)){
-			fh3.writeString(fhContent, false);
-			fh.writeString(fh2Content, false);
+		if (this.getConfig("reloadLevel").equals("true")){
+			boolean rewriteLevelData = false;
+			FileHandle fh = Gdx.files.local("data/levels/levelDataFile.xml");
+			FileHandle fh2 = Gdx.files.internal("data/levels/levelDataFile_bak.xml");
+			FileHandle fh3 = Gdx.files.local("data/levels/levelDataFile"+System.currentTimeMillis()+".xml");
+			String fhContent = fh.readString();
+			String fh2Content = fh.readString();
+			if (!fh2Content.equals(fhContent) && rewriteLevelData){
+				fh3.writeString(fhContent, false);
+				fh.writeString(fh2Content, false);
+			}
 		}
 	}
 
@@ -82,13 +94,11 @@ public class Game extends ApplicationAdapter {
 		SpriteBatch menuBatch = global.getMenuBatch();
 		
 		//UPDATES
-		//handleCameraInput();
 		global.getCamera().update();
 		global.getCurrentMenu().update(global.getStateTime());
 		if (global.getGame() != null){
 			global.getGame().update();
 		}
-		//handleCameraInput();
 		
 		//RENDERS
 		batch.setProjectionMatrix(global.getCamera().combined);
@@ -97,13 +107,27 @@ public class Game extends ApplicationAdapter {
 			global.getGame().render(batch);
 		}
 		batch.end();
-
+		
 		menuBatch.begin();
 		global.getCurrentMenu().render(menuBatch);
 		menuBatch.end();
 		
 		//System.out.println(Gdx.graphics.getFramesPerSecond());
 		
+	}
+	
+	private void loadConfigs(){
+		gameConfig = new HashMap<String,String>();
+		FileHandle fh = Gdx.files.internal("data/game_config.txt");
+		String[] configs = fh.readString().replace("\r","").split("\n");
+		for(String config : configs){
+			String[] configData = config.split("=");
+			gameConfig.put(configData[0].replace("=",""), configData[1].replace("=",""));
+		}
+	}
+	
+	public static String getConfig(String key){
+		return gameConfig.get(key);
 	}
 	
 	private void handleCameraInput() {
@@ -133,11 +157,6 @@ public class Game extends ApplicationAdapter {
 //		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
 //			cam.rotate(0.5f, 0, 0, 1);
 //		}
-		
-		//System.out.println("ZOOM: "+cam.zoom+" - pos"+cam.position.x+"x"+cam.position.y);
-		
-		int world_width = 1000;
-		int world_height = 1000;
 		
 		//max zoom out
 		//cam.zoom = MathUtils.clamp(cam.zoom, 0.1f, world_height/cam.viewportHeight);
